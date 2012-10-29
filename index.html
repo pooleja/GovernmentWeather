@@ -21,10 +21,10 @@
     
     getGovWeather(zip, function(data){
       var html = '<h1> ' + data.title + '</h1>';           
-      for (var i=0; i<data.lows.length; i++)
-         { 
+      for (var i=0; i<data.highs.length; i++)
+        { 
            html += 'Day ' + i + ': Low = ' + data.lows[i] + ', High = ' + data.highs[i] + '<br />';
-         }          
+        }          
          
           $("#weather").html(html);
         }); 
