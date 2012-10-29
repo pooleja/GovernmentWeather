@@ -1,0 +1,49 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<title>Government Weather | Good Enough For Goverment Work!</title>
+	
+	<style>
+
+	</style>
+	
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="jquery.governmentweather.js" charset="utf-8"></script>
+  <script>
+  $(document).ready(function () {
+
+  $("#btnGetWeather").click(function () {
+    
+    var $this = $(this);
+    var zip = $('#zipInput').val();
+    
+    getGovWeather(zip, function(data){
+      var html = '<h1> ' + data.title + '</h1>';           
+      for (var i=0; i<data.lows.length; i++)
+         { 
+           html += 'Day ' + i + ': Low = ' + data.lows[i] + ', High = ' + data.highs[i] + '<br />';
+         }          
+         
+          $("#weather").html(html);
+        }); 
+    });
+  });
+  </script>
+</head>
+<body>
+	<h1>Government Weather | Good Enough For Goverment Work!</h1>
+	<p>A simple jQuery function to get the 7 day weather forecast. The data is pulled from the weather.gov feed <a href="http://graphical.weather.gov/xml/">here.</a>
+    
+    Also, check out the web page <a href="http://graphical.weather.gov/xml/SOAP_server/ndfdXML.htm">here</a> to see examples of what you can get from this feed.
+  </p>
+  
+  Zip: <input type="text" id="zipInput", value="22405">
+  <br />
+  <input id="btnGetWeather" type="button" value="Get Weather" />
+
+	
+	<div id="weather"></div>
+</body>
+</html>
